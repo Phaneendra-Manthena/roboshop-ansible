@@ -2,3 +2,7 @@
   ansible.builtin.yum:
     name: nginx
     state: installed
+    register: out
+- name: ouput
+  ansible.builtin.debug:
+    var: out
