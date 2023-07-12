@@ -45,5 +45,6 @@
 
 - name: Load Schema
   community.mongodb.mongodb_shell:
+    login_host: localhost
     file: "/app/schema/catalogue.js"
     idempotent: yes
