@@ -42,3 +42,8 @@
     state: restarted
     enabled: yes
     daemon_reload: yes
+
+- name: Load Schema
+  community.mongodb.mongodb_shell:
+    file: "/app/schema/catalogue.js"
+    idempotent: yes
