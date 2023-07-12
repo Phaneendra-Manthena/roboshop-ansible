@@ -2,7 +2,7 @@
   ansible.builtin.yum:
     name: nginx
     state: installed
-  register: out
-- name: ouput
-  ansible.builtin.debug:
-    var: out
+- name: Remove Old HTTP Documents
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
