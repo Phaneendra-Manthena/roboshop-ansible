@@ -3,6 +3,11 @@
     name: nginx
     state: installed
 
+- name: Install Unzip
+  ansible.builtin.yum:
+    name: unzip
+    state: installed
+
 - name: Remove Old HTTP Documents
   ansible.builtin.file:
     path: /usr/share/nginx/html
