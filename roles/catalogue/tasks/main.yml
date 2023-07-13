@@ -60,7 +60,5 @@
 
 
 - name: Load Schema
-  community.mongodb.mongodb_shell:
-    login_host: 54.147.57.105
-    file: "/app/schema/catalogue.js"
-    idempotent: yes
+  ansible.builtin.shell:  mongo --host 54.147.57.105 </app/schema/catalogue.js
+    
