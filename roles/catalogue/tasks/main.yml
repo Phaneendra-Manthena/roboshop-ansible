@@ -1,6 +1,11 @@
 - name: Configure NodeJS Repos
   ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
 
+- name: Install Unzip
+  ansible.builtin.yum:
+    name: unzip
+    state: installed
+
 - name: Install NodeJS
   ansible.builtin.yum:
     name: nodejs
