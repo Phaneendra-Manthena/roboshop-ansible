@@ -32,8 +32,9 @@
     remote_src: yes
 
 - name: Install NodeJS Dependencies
-  community.builtin.shell: npm install
-
+  community.general.npm:
+    path: /app
+    state: latest
 
 - name: Copy SystemD file
   ansible.builtin.copy:
