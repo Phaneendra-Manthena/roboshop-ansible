@@ -59,8 +59,8 @@
     state: installed
 
 
-#- name: Load Schema
-#  community.mongodb.mongodb_shell:
-#    login_host: 34.88.153.14
-#    file: "/app/schema/catalogue.js"
-#    idempotent: yes
+- name: Load Schema
+  community.mongodb.mongodb_shell:
+    login_host: 34.88.153.14
+    file: "/app/schema/catalogue.js"
+    idempotent: yes
