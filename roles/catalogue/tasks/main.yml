@@ -61,6 +61,6 @@
 
 - name: Load Schema
   community.mongodb.mongodb_shell:
-    login_host: 172.31.28.1
+    login_host: 54.147.57.105
     file: "/app/schema/catalogue.js"
     idempotent: yes
