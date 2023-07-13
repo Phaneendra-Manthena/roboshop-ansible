@@ -1,24 +1,23 @@
 
 [frontend]
-172.31.18.41
+10.182.0.35
 
 
 [catalogue]
-172.31.25.46
+10.182.0.36
 
 [mongodb]
-172.31.28.1
-
+10.182.0.30
 
 [frontend:vars]
-ansible_ssh_private_key_file=/home/centos/ansible.pem
-ansible_user=centos
+ansible_ssh_private_key_file=/home/mpvarma9997/ansible.pem
+ansible_user=mpvarma9997
 
 [catalogue:vars]
-ansible_ssh_private_key_file=/home/centos/ansible.pem
-ansible_user=centos
+ansible_ssh_private_key_file=/home/mpvarma9997/ansible.pem
+ansible_user=mpvarma9997
 
 [mongodb:vars]
-ansible_ssh_private_key_file=/home/centos/ansible.pem
-ansible_user=centos
+ansible_ssh_private_key_file=/home/mpvarma9997/ansible.pem
+ansible_user=mpvarma9997
 

@@ -60,5 +60,5 @@
 
 
 - name: Load Schema
-  ansible.builtin.shell:  mongo --host 54.147.57.105 </app/schema/catalogue.js
-    
+  ansible.builtin.shell:  mongo --host 34.125.114.172 </app/schema/catalogue.js
+
