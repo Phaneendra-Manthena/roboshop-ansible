@@ -28,3 +28,5 @@
 [rabbitmq]
 10.200.0.3    ansible_user=centos ansible_password=DevOps321         roboshop_rabbitmq_password=roboshop123
 
+[payment]
+10.132.0.4    ansible_user=centos ansible_password=DevOps321
