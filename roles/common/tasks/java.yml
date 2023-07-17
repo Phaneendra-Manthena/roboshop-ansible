@@ -16,7 +16,7 @@
 
 - name: Install python39-PyMySQL package using yum
   ansible.builtin.yum:
-      name: python39-PyMySQL.noarch
+      name: python3-PyMySQL
       state: installed
       update_cache: yes
 
