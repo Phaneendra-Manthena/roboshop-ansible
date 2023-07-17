@@ -63,7 +63,7 @@
 #  ansible.builtin.shell: mongo --host 10.180.0.3 </app/schema/catalogue.js
 
 - name: Load Schema
-  community.mongdb.mongodb_shell:
+  community.mongodb.mongodb_shell:
     login_host: 10.180.0.3
     file: "/app/schema/catalogue.js"
     idempotent: yes
