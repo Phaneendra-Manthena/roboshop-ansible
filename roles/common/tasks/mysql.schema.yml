@@ -1,3 +1,9 @@
-- name: dummy
-  debug:
-    msg: hello
+- name: Load MySQL Schema
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    encoding: latin1
+    target: /app/schema/{{component}}.sql
+    login_host: 10.172.0.2
+    login_user: root
+    login_password: "{{root_mysql_password}}"
