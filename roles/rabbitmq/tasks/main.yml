@@ -3,7 +3,8 @@
   loop:
     - https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh
     - https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh
-- name: Install Erland and RabbitMQ
+
+- name: Install Erlang and RabbitMQ
   ansible.builtin.yum:
     name:
       - erlang
