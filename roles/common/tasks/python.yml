@@ -14,7 +14,7 @@
     requirements: /app/requirements.txt
     executable: pip3.6
 
-    
+
 - name: systemD setup
   ansible.builtin.include_tasks: "systemd.yml"
 
