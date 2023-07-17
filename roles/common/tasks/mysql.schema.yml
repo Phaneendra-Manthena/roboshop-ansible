@@ -2,7 +2,6 @@
   community.mysql.mysql_db:
     state: import
     name: all
-    encoding: latin1
     target: /app/schema/{{component}}.sql
     login_host: 10.172.0.2
     login_user: root
