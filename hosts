@@ -25,3 +25,7 @@
 [shipping]
 10.172.0.3    ansible_user=centos ansible_password=DevOps321         root_mysql_password=RoboShop@1
 
+[rabbitmq]
+
+10.200.0.3    ansible_user=centos ansible_password=DevOps321
+
