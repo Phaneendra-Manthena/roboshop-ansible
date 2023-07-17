@@ -1,0 +1,64 @@
+- name: Configure NodeJS Repos
+  ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
+
+- name: Install Unzip
+  ansible.builtin.yum:
+    name: unzip
+    state: installed
+
+- name: Install NodeJS
+  ansible.builtin.yum:
+    name: nodejs
+    state: present
+
+- name: App Application User
+  ansible.builtin.user:
+    name: roboshop
+
+- name: Remove Old app content
+  ansible.builtin.file:
+    path: /app
+    state: absent
+
+- name: Creating app Directory
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name: Download {{component}} App content
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/{{component}}.zip
+    dest: /app
+    remote_src: yes
+
+- name: Install NodeJS Dependencies
+  community.general.npm:
+    path: /app
+    state: latest
+
+- name: Copy SystemD file
+  ansible.builtin.copy:
+    src: "{{component}}.service"
+    dest: /etc/systemd/system/{{component}}.service
+
+- name: Start {{component}} Service
+  ansible.builtin.systemd:
+    name: "{{component}}"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
+- name: Copy Mongodb Yum Repo file
+  ansible.builtin.copy:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongodb.repo
+
+- name: Install MongoDB Server
+  ansible.builtin.yum:
+    name: mongodb-org-shell
+    state: installed
+
+
+- name: Load Schema
+  ansible.builtin.shell: mongo --host 10.180.0.3 </app/schema/{{component}}.js
+

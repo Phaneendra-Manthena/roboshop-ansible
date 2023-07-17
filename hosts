@@ -13,5 +13,7 @@
 [redis]
 10.168.0.3    ansible_user=centos ansible_password=DevOps321
 
+[user]
+10.132.0.2    ansible_user=centos ansible_password=DevOps321
 
 
