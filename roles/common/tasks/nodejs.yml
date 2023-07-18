@@ -1,6 +1,11 @@
 - name: Configure NodeJS Repos
   ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
 
+- name: Install NodeJS
+  ansible.builtin.yum:
+    name: nodejs
+    state: installed
+
 - name: App Pre-req
   ansible.builtin.include_tasks: "app-prereq.yml"
 
