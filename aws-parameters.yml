@@ -3,7 +3,7 @@
   connection: local
   tasks:
     - name: Create or update key/value pair in AWS SSM parameter store
-      community.aws_ssm_parameter:
+      community.aws.ssm_parameter:
         name: "{{item.name}}"
         value: "{{item.value}}"
         region: us-east-1
