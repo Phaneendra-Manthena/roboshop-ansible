@@ -21,8 +21,8 @@ create_instance() {
 PROJECT_ID="phani-389308"
 ZONE="us-west1-b"
 MACHINE_TYPE="e2-medium"
-IMAGE_FAMILY="centos-8"
-IMAGE_PROJECT="centos8"
+IMAGE_FAMILY="centos8"
+IMAGE_PROJECT="phani-389308"
 env="dev"
 
 # Create the virtual machine instances
