@@ -31,11 +31,14 @@
 
 
 
-        - name: Create Secrets
+    - name: Create Secrets
+      hosts: localhost
+      tasks:
+        - name: Create AWS SSM Parameter Store secrets
           community.aws.aws_ssm_parameter_store:
-            name: "{{item.name}}"
-            value: "{{item.value}}"
+            name: "{{ item.name }}"
+            value: "{{ item.value }}"
             region: us-east-1
             string_type: "SecureString"
           loop:
-            - { name: "dev.payment.AMQP_PASS", value: "roboshop123"}
+            - { name: "dev.payment.AMQP_PASS", value: "roboshop123" }
