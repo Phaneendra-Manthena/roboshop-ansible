@@ -42,3 +42,17 @@
         string_type: "SecureString"
       loop:
         - { name: "dev.payment.AMQP_PASS", value: "roboshop123" }
+
+- name: Create Secrets in AWS Secret Manager
+  hosts: localhost
+  tasks:
+    - name: Create AWS Secret Manager secret
+      community.aws.aws_secret:
+        name: "dev/payment/AMQP_PASS"    # Replace with your desired secret name
+        secret_string: "roboshop123"    # Replace with your secret value
+        region: "us-east-1"             # Replace with your desired AWS region
+      register: secret_result
+
+    - name: Display secret ARN
+      debug:
+        var: secret_result
