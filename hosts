@@ -1,6 +1,6 @@
 
 [frontend]
-10.182.0.45   ansible_user=centos ansible_password=DevOps321
+10.172.0.4   ansible_user=centos ansible_password=DevOps321
 
 
 [catalogue]
