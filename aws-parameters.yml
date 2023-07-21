@@ -42,6 +42,8 @@
         string_type: "SecureString"
       loop:
         - { name: "dev.payment.AMQP_PASS", value: "roboshop123" }
+        - {name: "sonarqube.user", value: "admin"}
+        - {name: "sonarqube.pass", value: "mjrr"}
 
 #- name: Create Secrets in AWS Secret Manager
 #  hosts: localhost
