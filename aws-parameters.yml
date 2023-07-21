@@ -2,33 +2,33 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: Create Parameters
-      community.aws.aws_ssm_parameter_store:
-        name: "{{item.name}}"
-        value: "{{item.value}}"
-        region: us-east-1
-      loop:
-        - {name: "dev.cart.REDIS_HOST", value: "10.168.0.3"}
-        - {name: "dev.cart.CATALOGUE_HOST", value: "10.180.0.2"}
-        - {name: "dev.catalogue.MONGO", value: "true"}
-        - {name: "dev.catalogue.MONGO_URL", value: "mongodb://10.180.0.3:27017/catalogue"}
-        - {name: "dev.frontend.CATALOGUE_URL", value: "http://10.180.0.2:8080/"}
-        - {name: "dev.frontend.USER_URL", value: "http://10.132.0.2:8080/"}
-        - {name: "dev.frontend.CART_URL", value: "http://10.132.0.3:8080/"}
-        - {name: "dev.frontend.SHIPPING_URL", value: "http://10.172.0.3:8080/"}
-        - { name: "dev.frontend.PAYMENT_URL", value: "http://10.132.0.4:8080/"}
-        - { name: "dev.payment.CART_HOST", value: "http://10.132.0.3:8080/"}
-        - { name: "dev.payment.CART_PORT", value: "8080"}
-        - { name: "dev.payment.USER_HOST", value: "10.132.0.2"}
-        - { name: "dev.payment.USER_PORT", value: "8080"}
-        - { name: "dev.payment.AMQP_HOST", value: "10.200.0.3"}
-        - { name: "dev.payment.AMQP_USER", value: "roboshop"}
-        - { name: "dev.shipping.CART_ENDPOINT", value: "10.132.0.3:8080"}
-        - { name: "dev.shipping.DB_HOST", value: "10.172.0.2"}
-        - { name: "dev.user.MONGO", value: "true"}
-        - { name: "dev.user.REDIS_HOST", value: "10.168.0.3"}
-        - { name: "dev.user.MONGO_URL", value: "mongodb://10.180.0.3:27017/users"}
-
+#    - name: Create Parameters
+#      community.aws.aws_ssm_parameter_store:
+#        name: "{{item.name}}"
+#        value: "{{item.value}}"
+#        region: us-east-1
+#      loop:
+#        - {name: "dev.cart.REDIS_HOST", value: "10.168.0.3"}
+#        - {name: "dev.cart.CATALOGUE_HOST", value: "10.180.0.2"}
+#        - {name: "dev.catalogue.MONGO", value: "true"}
+#        - {name: "dev.catalogue.MONGO_URL", value: "mongodb://10.180.0.3:27017/catalogue"}
+#        - {name: "dev.frontend.CATALOGUE_URL", value: "http://10.180.0.2:8080/"}
+#        - {name: "dev.frontend.USER_URL", value: "http://10.132.0.2:8080/"}
+#        - {name: "dev.frontend.CART_URL", value: "http://10.132.0.3:8080/"}
+#        - {name: "dev.frontend.SHIPPING_URL", value: "http://10.172.0.3:8080/"}
+#        - { name: "dev.frontend.PAYMENT_URL", value: "http://10.132.0.4:8080/"}
+#        - { name: "dev.payment.CART_HOST", value: "http://10.132.0.3:8080/"}
+#        - { name: "dev.payment.CART_PORT", value: "8080"}
+#        - { name: "dev.payment.USER_HOST", value: "10.132.0.2"}
+#        - { name: "dev.payment.USER_PORT", value: "8080"}
+#        - { name: "dev.payment.AMQP_HOST", value: "10.200.0.3"}
+#        - { name: "dev.payment.AMQP_USER", value: "roboshop"}
+#        - { name: "dev.shipping.CART_ENDPOINT", value: "10.132.0.3:8080"}
+#        - { name: "dev.shipping.DB_HOST", value: "10.172.0.2"}
+#        - { name: "dev.user.MONGO", value: "true"}
+#        - { name: "dev.user.REDIS_HOST", value: "10.168.0.3"}
+#        - { name: "dev.user.MONGO_URL", value: "mongodb://10.180.0.3:27017/users"}
+#
 
 
 - name: Create Secrets
