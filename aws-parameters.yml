@@ -52,7 +52,7 @@
   gather_facts: false
   tasks:
     - name: Create AWS Secrets Manager secrets
-      community.aws.aws_secretsmanager:
+      community.aws.aws_secret:
         name: "{{ item.name }}"
         secret_string: "{{ item.value }}"
         region: us-east-1
