@@ -46,18 +46,18 @@
         - {name: "sonarqube.pass", value: "mjrr"}
 
 
-- name: Create Secrets in AWS Secret Manager
-  hosts: localhost
-  tasks:
-    - name: Create AWS Secret Manager secret
-      community.aws.aws_secret:
-        name: "{{ item.name }}"   # Replace with your desired secret name
-        secret: "{{ item.secret }}"    # Replace with your secret data in dictionary format
-        region: "us-east-1"            # Replace with your desired AWS region
-        string_type: "SecureString"
-
-      loop:
-        - { name: "sonar.pass", secret: "mjrr" }
+#- name: Create Secrets in AWS Secret Manager
+#  hosts: localhost
+#  tasks:
+#    - name: Create AWS Secret Manager secret
+#      community.aws.aws_secret:
+#        name: "{{ item.name }}"   # Replace with your desired secret name
+#        secret: "{{ item.secret }}"    # Replace with your secret data in dictionary format
+#        region: "us-east-1"            # Replace with your desired AWS region
+#        string_type: "SecureString"
+#
+#      loop:
+#        - { name: "sonar.pass", secret: "mjrr" }
 
 
 #- name: Create Secrets in AWS Secret Manager
