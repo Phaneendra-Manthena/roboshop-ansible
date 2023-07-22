@@ -54,9 +54,9 @@
         name: "{{ item.name }}"   # Replace with your desired secret name
         secret: "{{ item.secret }}"    # Replace with your secret data in dictionary format
         region: "us-east-1"             # Replace with your desired AWS region
-      register: secret_result
-  loop:
-      - {name: "sonar.pass", secret: "mjrr"}
+      loop:
+        - { name: "sonar.pass", secret: "mjrr" }
+
 
 #- name: Create Secrets in AWS Secret Manager
 #  hosts: localhost
