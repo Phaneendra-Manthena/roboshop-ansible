@@ -24,7 +24,7 @@
         - { name: "dev.payment.AMQP_HOST", value: "10.200.0.3"}
         - { name: "dev.payment.AMQP_USER", value: "roboshop"}
         - { name: "dev.shipping.CART_ENDPOINT", value: "10.132.0.3:8080"}
-        - { name: "dev.shipping.DB_HOST", value: "10.182.0.46"}
+        - { name: "dev.shipping.DB_HOST", value: "10.172.0.2"}
         - { name: "dev.user.MONGO", value: "true"}
         - { name: "dev.user.REDIS_HOST", value: "10.168.0.3"}
         - { name: "dev.user.MONGO_URL", value: "mongodb://10.180.0.3:27017/users"}
