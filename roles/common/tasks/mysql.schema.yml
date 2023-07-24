@@ -4,7 +4,9 @@
       - python3-PyMySQL
       - mysql
     state: installed
-
+- name: Fetch MySQL root password from AWS SSM Parameter Store
+  ansible.builtin.set_fact:
+    root_mysql_password: "{{ lookup('aws_ssm', '{{env}}.mysql.DB_ADMIN_PASS', region='us-east-1') }}"
 - name: Load MySQL Schema
   community.mysql.mysql_db:
     state: import
@@ -13,6 +15,6 @@
     login_host: 10.182.0.46
     login_user: root
     login_password: "{{root_mysql_password}}"
-    vars:
-#      root_mysql_password: "{{ lookup('aws_ssm', 'dev.mysql.DB_ADMIN_PASS', region='us-east-1' ) }}"
-       root_mysql_password: "RoboShop@1"
+#    vars:
+##      root_mysql_password: "{{ lookup('aws_ssm', 'dev.mysql.DB_ADMIN_PASS', region='us-east-1' ) }}"
+#       root_mysql_password: "RoboShop@1"
