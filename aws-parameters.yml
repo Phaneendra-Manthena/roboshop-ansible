@@ -44,6 +44,8 @@
 #        - { name: "dev.payment.AMQP_PASS", value: "roboshop123" }
         - {name: "sonarqube.user", value: "admin"}
         - {name: "sonarqube.pass", value: "mjrr"}
+        - {name: "nexus.user", value: "admin"}
+        - {name: "nexus.pass", value: "mjrr"}
 
 
 #- name: Create Secrets in AWS Secret Manager
