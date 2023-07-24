@@ -27,8 +27,8 @@
          msg: Password is already changed
          when: out.rc == 1
   vars:
-#    root_mysql_password: "{{ lookup('aws_ssm', '{{env}}.{{component}}.DB_ADMIN_PASS', region='us-east-1' ) }}"
-     root_mysql_password: "RoboShop@1"
+   root_mysql_password: "{{ lookup('aws_ssm', '{{env}}.{{component}}.DB_ADMIN_PASS', region='us-east-1' ) }}"
+
 -  name: Password Status
    ansible.builtin.debug:
      msg: Password is already changed
