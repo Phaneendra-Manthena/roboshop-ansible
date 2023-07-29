@@ -14,6 +14,12 @@
     path: /app
     state: latest
 
+- name: Download DocDB CA File
+  ansible.builtin.get_url:
+    url: https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
+    dest: /app/rds-combined-ca-bundle.pem
+  when: schema_load
+
 - name: systemD setup
   ansible.builtin.include_tasks: "systemd.yml"
 
