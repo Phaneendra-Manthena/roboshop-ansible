@@ -55,6 +55,8 @@
 #        - { name: "dev.rabbitmq.AMQP_PASS", value: "roboshop123" }
         - { name: "dev.docdb.DB_ADMIN_USER", value: "admin1" }
         - { name: "dev.docdb.DB_ADMIN_PASS", value: "RoboShop123" }
+        - { name: "dev.rds.DB_ADMIN_USER", value: "admin1" }
+        - { name: "dev.rds.DB_ADMIN_PASS", value: "RoboShop123" }
 
 
 #- name: Create Secrets in AWS Secret Manager
