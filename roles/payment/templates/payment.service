@@ -8,7 +8,7 @@ Environment=CART_HOST={{ lookup('aws_ssm', "{{env}}.{{component}}.CART_HOST", re
 Environment=CART_PORT={{ lookup('aws_ssm', "{{env}}.{{component}}.CART_PORT", region='us-east-1') }}
 Environment=USER_HOST={{ lookup('aws_ssm', "{{env}}.{{component}}.USER_HOST", region='us-east-1') }}
 Environment=USER_PORT={{ lookup('aws_ssm', "{{env}}.rabbitmq.USER_HOST", region='us-east-1') }}
-Environment=AMQP_HOST={{ lookup('aws_ssm', "{{env}}.rabbitmq.AMQP_HOST", region='us-east-1') }}
+Environment=AMQP_HOST={{ lookup('aws_ssm', "{{env}}.rabbitmq.ENDPOINT", region='us-east-1') }}
 Environment=AMQP_USER={{ lookup('aws_ssm', "{{env}}.rabbitmq.USER", region='us-east-1') }}
 Environment=AMQP_PASS={{ lookup('aws_ssm', "{{env}}.rabbitmq.PASS", region='us-east-1') }}
 
