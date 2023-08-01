@@ -95,6 +95,9 @@
         - { name: "dev.ssh.pass", value: "DevOps321" }
         -  { name: "nexus.user", value: "admin" }
         - {name: "nexus.pass", value: "mjrr"}
+        - { name: "grafana.api_key", value: "eyJrIjoiYXNIVXluaTdySnpqbUY1ZGdVcEFsaHE1RVd3dGJRMWkiLCJuIjoiY2xpIiwiaWQiOjF9"}
+        - { name: "ses.user", value: "AKIAZHEF5S5CNSTWTZOL" }
+        - { name: "ses.pass", value: "BNcrOH3Rp67olv9cU8iIT7t9k8h3WeWCO+8t0NA3uRKJ" }
 
 
 

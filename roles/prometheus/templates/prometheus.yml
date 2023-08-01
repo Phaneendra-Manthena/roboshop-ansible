@@ -9,12 +9,12 @@ alerting:
   alertmanagers:
     - static_configs:
         - targets:
-#            - localhost:9093
+            - localhost:9093
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
-#  - "record-rules.yml"
-#  - "alert-rules.yml"
+  - "record-rules.yml"
+  - "alert-rules.yml"
 #  - "alerts/*.yml"
 
 # A scrape configuration containing exactly one endpoint to scrape:
@@ -27,6 +27,13 @@ scrape_configs:
     ec2_sd_configs:
       - region: us-east-1
         port: 9100
-
-    static_configs:
-      - targets: ["10.166.0.3:9100"]
+        filters:
+          - name: "tag:project"
+            values: ["roboshop"]
+    relabel_configs:
+{% for item in labels %}
+    - source_labels: [__meta_ec2_tag_{{ item.tag }}]
+      target_label: {{ item.label }}
+{% endfor %}
+#    static_configs:
+#      - targets: ["10.166.0.3:9100"]
