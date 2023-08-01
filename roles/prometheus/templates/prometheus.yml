@@ -24,5 +24,9 @@ scrape_configs:
     static_configs:
       - targets: ["localhost:9090"]
   - job_name: test
-    static_configs:
-      - targets: ["10.166.0.3:9100"]
+    gce_sd_configs:
+      - zone: europe-north1-a
+        project: Phani
+
+#    static_configs:
+#      - targets: ["10.166.0.3:9100"]
