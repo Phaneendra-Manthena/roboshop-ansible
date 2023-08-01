@@ -82,8 +82,8 @@
 #        - {name: "nexus.pass", value: "mjrr"}
 #
       loop:
-#        - { name: "dev.payment.AMQP_PASS", value: "roboshop123" }
-#        - { name: "dev.rabbitmq.AMQP_PASS", value: "roboshop123" }
+        - { name: "dev.payment.AMQP_PASS", value: "roboshop123" }
+        - { name: "dev.rabbitmq.AMQP_PASS", value: "roboshop123" }
         - { name: "dev.docdb.DB_ADMIN_USER", value: "admin1" }
         - { name: "dev.docdb.DB_ADMIN_PASS", value: "RoboShop123" }
         - { name: "dev.rds.DB_ADMIN_USER", value: "admin1" }
