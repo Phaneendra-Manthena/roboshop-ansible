@@ -52,7 +52,7 @@
         - { name: "dev.payment.CART_PORT", value: "80"}
         - { name: "dev.payment.USER_HOST", value: "user-dev.phanidevops.cloud"}
         - { name: "dev.payment.USER_PORT", value: "80"}
-        - { name: "dev.payment.AMQP_HOST", value: "rabbitmq-dev.phanidevops.cloud"}
+        - { name: "dev.payment.AMQP_HOST", value: "10.0.6.241"}
         - { name: "dev.payment.AMQP_USER", value: "roboshop"}
         - { name: "dev.shipping.CART_ENDPOINT", value: "cart-dev.phanidevops.cloud:80"}
         - { name: "dev.shipping.DB_HOST", value: "mysql-dev.phanidevops.cloud"}
