@@ -27,6 +27,8 @@ scrape_configs:
     gce_sd_configs:
       - zone: europe-north1-a
         project: Phani
+      - zone: europe-west6-a
+        project: Phani
 
 #    static_configs:
 #      - targets: ["10.166.0.3:9100"]
