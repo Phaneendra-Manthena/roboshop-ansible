@@ -92,6 +92,8 @@
         - { name: "dev.rabbitmq.PASS", value: "roboshop1234" }
         -  { name: "dev.ssh.user", value: "centos" }
         - { name: "dev.ssh.pass", value: "DevOps321" }
+        -  { name: "nexus.user", value: "admin" }
+        - {name: "nexus.pass", value: "mjrr"}
 
 
 
