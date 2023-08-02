@@ -2,10 +2,10 @@
   ansible.builtin.user:
     name: roboshop
 
-- name: Remove Old app content
-  ansible.builtin.file:
-    path: /opt/prometheus
-    state: absent
+#- name: Remove Old app content
+#  ansible.builtin.file:
+#    path: /opt/prometheus
+#    state: absent
 
 - name: Creating app Directory
   ansible.builtin.file:
