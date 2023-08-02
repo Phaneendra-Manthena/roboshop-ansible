@@ -15,6 +15,11 @@
     remote_src: yes
     extra_opts: "--strip-components=1"  # Use this option to remove the parent directory (prometheus-2.46.0.linux-amd64) during extraction
 
+- name: Copy SystemD file
+  ansible.builtin.template:
+    src: "prometheus.service"
+    dest: /etc/systemd/system/prometheus.service
+
 
 - name: Enable Prometheus service on boot
   ansible.builtin.systemd:
