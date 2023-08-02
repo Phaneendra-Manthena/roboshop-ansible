@@ -31,12 +31,12 @@
 ##- name: Ensure Prometheus binary has execute permission
 ##  ansible.builtin.shell: sudo chown -R prometheus:prometheus /opt/prometheus
 #
-- name: Enable Prometheus service on boot
-  ansible.builtin.systemd:
-      name: prometheus
-      state: started
-      enabled: yes
-      daemon_reload: yes
+#- name: Enable Prometheus service on boot
+#  ansible.builtin.systemd:
+#      name: prometheus
+#      state: started
+#      enabled: yes
+#      daemon_reload: yes
 
 
 
