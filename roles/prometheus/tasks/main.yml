@@ -32,7 +32,7 @@
       name: prometheus
       state: started
       enabled: yes
-
+      daemon_reload: yes
 
 
 
