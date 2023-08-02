@@ -1,12 +1,3 @@
-- name: App Application User
-  ansible.builtin.user:
-    name: roboshop
-
-#- name: Remove Old app content
-#  ansible.builtin.file:
-#    path: /opt/prometheus
-#    state: absent
-
 - name: Creating app Directory
   ansible.builtin.file:
     path: /opt/prometheus
@@ -15,9 +6,22 @@
 - name: Downloading Prometheus
   ansible.builtin.unarchive:
     src: https://github.com/prometheus/prometheus/releases/download/v2.46.0/prometheus-2.46.0.linux-amd64.tar.gz
-    dest: /opt/prometheus
+    dest: /opt/prometheus-2.46.0.linux-amd64.tar.gz
     remote_src: yes
+  register: prometheus_archive
 
+- name: Extract Prometheus
+  ansible.builtin.unarchive:
+    src: "{{ prometheus_archive.dest }}"
+    dest: /opt/
+    remote_src: no
+  when: prometheus_archive|changed
+
+- name: Rename Prometheus directory
+  ansible.builtin.file:
+    src: "/opt/prometheus-2.46.0.linux-amd64"
+    dest: "/opt/prometheus"
+    state: link
 
 - name: Copy SystemD file
   ansible.builtin.template:
