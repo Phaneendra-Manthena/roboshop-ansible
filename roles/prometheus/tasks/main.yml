@@ -18,25 +18,20 @@
     dest: /opt/prometheus
     remote_src: yes
 
-- name: Prometheus file
-  ansible.builtin.shell: mv prometheus-2.46.0.linux-amd64 prometheus
 
-
-
-
-#- name: Copy SystemD file
-#  ansible.builtin.template:
-#    src: "prometheus.service"
-#    dest: /etc/systemd/system/prometheus.service
+- name: Copy SystemD file
+  ansible.builtin.template:
+    src: "prometheus.service"
+    dest: /etc/systemd/system/prometheus.service
 #
 ##- name: Ensure Prometheus binary has execute permission
 ##  ansible.builtin.shell: sudo chown -R prometheus:prometheus /opt/prometheus
 #
-#- name: Enable Prometheus service on boot
-#  ansible.builtin.systemd:
-#      name: prometheus
-#      state: started
-#      enabled: yes
+- name: Enable Prometheus service on boot
+  ansible.builtin.systemd:
+      name: prometheus
+      state: started
+      enabled: yes
 
 
 
