@@ -1,4 +1,4 @@
-tasks:
+
   - name: Remove existing Prometheus directory if it exists
     file:
       path: /opt/prometheus
