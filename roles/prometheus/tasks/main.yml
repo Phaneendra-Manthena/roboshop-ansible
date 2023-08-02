@@ -9,6 +9,12 @@
     dest: /opt/prometheus
     remote_src: yes
 
+- name: Replace old hostname with new hostname (requires Ansible >= 2.4)
+  ansible.builtin.replace:
+    path: /opt/prometheus
+    regexp: 'prometheus-2\.46\.0\.linux-amd64'
+    replace: 'prometheus'
+
 #- name: Copy SystemD file
 #  ansible.builtin.template:
 #    src: "prometheus.service"
