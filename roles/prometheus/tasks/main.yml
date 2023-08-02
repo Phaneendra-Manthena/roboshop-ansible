@@ -13,6 +13,11 @@
   ansible.builtin.template:
     src: "prometheus.service"
     dest: /etc/systemd/system/prometheus.service
+- name: Ensure Prometheus binary has execute permission
+  ansible.builtin.file:
+      path: /opt/prometheus/prometheus
+      mode: '0755'
+      state: file
 
 - name: Enable Prometheus service on boot
   ansible.builtin.systemd:
