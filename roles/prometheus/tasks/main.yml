@@ -14,15 +14,14 @@
     dest: /opt/prometheus  # Destination directory path
     remote_src: yes
     extra_opts: "--strip-components=1"  # Use this option to remove the parent directory (prometheus-2.46.0.linux-amd64) during extraction
-##- name: Ensure Prometheus binary has execute permission
-##  ansible.builtin.shell: sudo chown -R prometheus:prometheus /opt/prometheus
-#
-#- name: Enable Prometheus service on boot
-#  ansible.builtin.systemd:
-#      name: prometheus
-#      state: started
-#      enabled: yes
-#      daemon_reload: yes
+
+
+- name: Enable Prometheus service on boot
+  ansible.builtin.systemd:
+      name: prometheus
+      state: started
+      enabled: yes
+      daemon_reload: yes
 
 
 
