@@ -1,47 +1,54 @@
+---
+- name: Install Prometheus
+  hosts: your_target_hosts_or_host_group
+  become: yes
 
-  - name: Remove existing Prometheus directory if it exists
-    file:
-      path: /opt/prometheus
-      state: absent
+  tasks:
+    - name: Remove existing Prometheus directory if it exists
+      file:
+        path: /opt/prometheus
+        state: absent
 
-  - name: Retrieve Prometheus download URL
-    shell: |
-      curl -L -s https://prometheus.io/download/ | grep tar | grep prometheus- | grep linux-amd64  | sed -e "s|>| |g" -e 's|<| |g' -e 's|"| |g' | xargs -n1 | grep ^http | tail -1
-    register: prometheus_url
+    - name: Retrieve Prometheus download URL
+      shell: |
+        curl -L -s https://prometheus.io/download/ | grep tar | grep prometheus- | grep linux-amd64  | sed -e "s|>| |g" -e 's|<| |g' -e 's|"| |g' | xargs -n1 | grep ^http | tail -1
+      register: prometheus_url
 
-  - name: Set variables for file and directory names
-    set_fact:
-      prometheus_filename: "{{ prometheus_url.stdout | basename }}"
-      prometheus_dirname: "{{ prometheus_filename | regex_replace('.tar.gz', '') }}"
+    - name: Set variables for file and directory names
+      set_fact:
+        prometheus_filename: "{{ prometheus_url.stdout | basename }}"
+        prometheus_dirname: "{{ prometheus_filename | regex_replace('.tar.gz', '') }}"
 
-  - name: Download Prometheus archive
-    get_url:
-      url: "{{ prometheus_url.stdout }}"
-      dest: /opt/{{ prometheus_filename }}
-      mode: 0644
+    - name: Download Prometheus archive
+      get_url:
+        url: "{{ prometheus_url.stdout }}"
+        dest: /opt/{{ prometheus_filename }}
+        mode: 0644
 
-  - name: Extract Prometheus archive
-    unarchive:
-      src: /opt/{{ prometheus_filename }}
-      dest: /opt/
-      creates: "/opt/{{ prometheus_dirname }}"
+    - name: Extract Prometheus archive
+      unarchive:
+        src: /opt/{{ prometheus_filename }}
+        dest: /opt/
+        creates: "/opt/{{ prometheus_dirname }}"
 
-  - name: Remove Prometheus archive
-    file:
-      path: "/opt/{{ prometheus_filename }}"
-      state: absent
+    - name: Remove Prometheus archive
+      file:
+        path: "/opt/{{ prometheus_filename }}"
+        state: absent
 
-  - name: Move Prometheus directory
-    command: mv "/opt/{{ prometheus_dirname }}" /opt/prometheus
+    - name: Move Prometheus directory
+      command: mv "/opt/{{ prometheus_dirname }}" /opt/prometheus
+      args:
+        creates: /opt/prometheus
 
-  - name: Copy Prometheus systemd service file
-    copy:
-      src: prometheus.service
-      dest: /etc/systemd/system/prometheus.service
-      mode: 0644
+    - name: Copy Prometheus systemd service file
+      copy:
+        src: prometheus.service
+        dest: /etc/systemd/system/prometheus.service
+        mode: 0644
 
-  - name: Enable and start Prometheus service
-    systemd:
-      name: prometheus
-      state: started
-      enabled: yes
+    - name: Enable and start Prometheus service
+      systemd:
+        name: prometheus
+        state: started
+        enabled: yes
