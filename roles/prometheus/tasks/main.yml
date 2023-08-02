@@ -1,3 +1,8 @@
+- name: Creating app Directory
+  ansible.builtin.file:
+    path: /opt/prometheus
+    state: directory
+
 - name: Downloading Prometheus
   ansible.builtin.unarchive:
     src: https://github.com/prometheus/prometheus/releases/download/v2.46.0/prometheus-2.46.0.linux-amd64.tar.gz
