@@ -1,12 +1,12 @@
-#- name: Copy Prometheus Config
-#  ansible.builtin.template:
-#    src: prometheus.yml
-#    dest: /opt/prometheus/prometheus.yml
+- name: Copy Prometheus Config
+  ansible.builtin.template:
+    src: prometheus.yml
+    dest: /opt/prometheus/prometheus.yml
 #  vars:
 #    labels:
 #      - {tag: "env", label: "environment"}
 #      - {tag: "Name", label: "name"}
-#
+
 #
 #- name: Copy Record Rules
 #  ansible.builtin.template:
