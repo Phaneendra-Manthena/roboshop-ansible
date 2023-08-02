@@ -1,4 +1,9 @@
+---
+- name: Install Prometheus
+  hosts: your_target_hosts_or_host_group
+  become: yes
 
+  tasks:
     - name: Remove existing Prometheus directory if it exists
       file:
         path: /opt/prometheus
