@@ -9,6 +9,16 @@
     dest: /opt/prometheus
     remote_src: yes
 
+- name: Copy SystemD file
+  ansible.builtin.template:
+    src: "prometheus.service"
+    dest: /etc/systemd/system/prometheus.service
+
+- name: Enable Prometheus service on boot
+  ansible.builtin.systemd:
+      name: prometheus
+      state: started
+      enabled: yes
 
 
 
