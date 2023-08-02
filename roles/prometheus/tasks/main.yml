@@ -1,3 +1,22 @@
+- name: Ensure Prometheus user is present
+  user:
+      name: prometheus
+      state: present
+
+- name: Ensure Prometheus group is present
+  group:
+        name: prometheus
+        state: present
+
+- name: Ensure Prometheus directory has the required permissions and ownership
+  file:
+        path: /opt/prometheus
+        mode: '0755'
+        owner: prometheus
+        group: prometheus
+        state: directory
+
+
 - name: Creating app Directory
   ansible.builtin.file:
     path: /opt/prometheus
