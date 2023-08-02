@@ -6,7 +6,7 @@
 - name: Downloading Prometheus
   ansible.builtin.unarchive:
     src: https://github.com/prometheus/prometheus/releases/download/v2.46.0/prometheus-2.46.0.linux-amd64.tar.gz
-    dest: /opt/prometheus-2.46.0.linux-amd64.tar.gz
+    dest: /opt/prometheus
     remote_src: yes
   register: prometheus_archive
 
