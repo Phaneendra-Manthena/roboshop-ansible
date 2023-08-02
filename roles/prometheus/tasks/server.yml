@@ -1,56 +1,56 @@
-- name: Copy Prometheus Config
-  ansible.builtin.template:
-    src: prometheus.yml
-    dest: /opt/prometheus/prometheus.yml
-  vars:
-    labels:
-      - {tag: "env", label: "environment"}
-      - {tag: "Name", label: "name"}
-
-
-- name: Copy Record Rules
-  ansible.builtin.template:
-    src: record-rules.yml
-    dest: /opt/prometheus/record-rules.yml
-
-- name: Copy Alert Rules
-  ansible.builtin.template:
-    src: alert-rules.yml
-    dest: /opt/prometheus/alert-rules.yml
-
-- name: Copy AlertManager Configfuration
-  ansible.builtin.template:
-    src: alertmanager.yml
-    dest: /opt/alertmanager/alertmanager.yml
-
-- name: Restart AlertManager
-  ansible.builtin.systemd:
-    name: alertmanager
-    state: restarted
-
-
-
-- name: Restart Prometheus
-  ansible.builtin.systemd:
-    name: prometheus.service
-    state: restarted
-
-- name: Check Prometheus Server Started or not
-  ansible.builtin.shell: netstat -lntp | grep 9090
-
-
-### Grafana          Refer common/tasks/main.yml for below configuration
-#
-#- name: Make Template
+#- name: Copy Prometheus Config
 #  ansible.builtin.template:
-#    src: grafana-template.json
-#    dest: /tmp/grafana.json
-#    remote_src: yes
+#    src: prometheus.yml
+#    dest: /opt/prometheus/prometheus.yml
+#  vars:
+#    labels:
+#      - {tag: "env", label: "environment"}
+#      - {tag: "Name", label: "name"}
 #
-#- name: Import Grafana dashboard
-#  community.grafana.grafana_dashboard:
-#    grafana_url: http://172.31.9.50:3000
-#    grafana_api_key: "{{ grafana_api_key }}"
-#    state: present
-#    overwrite: yes
-#    path: /tmp/grafana.json
+#
+#- name: Copy Record Rules
+#  ansible.builtin.template:
+#    src: record-rules.yml
+#    dest: /opt/prometheus/record-rules.yml
+#
+#- name: Copy Alert Rules
+#  ansible.builtin.template:
+#    src: alert-rules.yml
+#    dest: /opt/prometheus/alert-rules.yml
+#
+#- name: Copy AlertManager Configfuration
+#  ansible.builtin.template:
+#    src: alertmanager.yml
+#    dest: /opt/alertmanager/alertmanager.yml
+#
+#- name: Restart AlertManager
+#  ansible.builtin.systemd:
+#    name: alertmanager
+#    state: restarted
+#
+#
+#
+#- name: Restart Prometheus
+#  ansible.builtin.systemd:
+#    name: prometheus.service
+#    state: restarted
+#
+#- name: Check Prometheus Server Started or not
+#  ansible.builtin.shell: netstat -lntp | grep 9090
+#
+#
+#### Grafana          Refer common/tasks/main.yml for below configuration
+##
+##- name: Make Template
+##  ansible.builtin.template:
+##    src: grafana-template.json
+##    dest: /tmp/grafana.json
+##    remote_src: yes
+##
+##- name: Import Grafana dashboard
+##  community.grafana.grafana_dashboard:
+##    grafana_url: http://172.31.9.50:3000
+##    grafana_api_key: "{{ grafana_api_key }}"
+##    state: present
+##    overwrite: yes
+##    path: /tmp/grafana.json

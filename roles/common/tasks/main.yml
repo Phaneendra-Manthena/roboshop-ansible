@@ -1,19 +1,19 @@
-- name: Set Hostname
-  ansible.builtin.shell: set-hostname {{component}}
-
-- name: Install Prometheus Node Exporter
-  ansible.builtin.shell: labauto prometheus-node-exporter
-
-- name: Make Template
-  ansible.builtin.template:
-    src: grafana-template.json
-    dest: /tmp/grafana.json
-    remote_src: yes
-
-- name: Import Grafana dashboard
-  community.grafana.grafana_dashboard:
-    grafana_url: http://172.31.9.50:3000
-    grafana_api_key: "{{ lookup('aws_ssm', 'grafana.api_key', region='us-east-1' ) }}"
-    state: present
-    overwrite: yes
-    path: /tmp/grafana.json
+#- name: Set Hostname
+#  ansible.builtin.shell: set-hostname {{component}}
+#
+#- name: Install Prometheus Node Exporter
+#  ansible.builtin.shell: labauto prometheus-node-exporter
+#
+#- name: Make Template
+#  ansible.builtin.template:
+#    src: grafana-template.json
+#    dest: /tmp/grafana.json
+#    remote_src: yes
+#
+#- name: Import Grafana dashboard
+#  community.grafana.grafana_dashboard:
+#    grafana_url: http://172.31.9.50:3000
+#    grafana_api_key: "{{ lookup('aws_ssm', 'grafana.api_key', region='us-east-1' ) }}"
+#    state: present
+#    overwrite: yes
+#    path: /tmp/grafana.json
