@@ -6,11 +6,11 @@
 - name: Download Prometheus archive
   ansible.builtin.get_url:
     url: https://github.com/prometheus/prometheus/releases/download/v2.46.0/prometheus-2.46.0.linux-amd64.tar.gz
-    dest: /tmp/prometheus-2.46.0.linux-amd64.tar.gz
+    dest: /tmp/*
 
 - name: Unarchive Prometheus
   ansible.builtin.unarchive:
-    src: /tmp/prometheus-2.46.0.linux-amd64.tar.gz
+    src: /tmp/*
     dest: /opt/prometheus  # Destination directory path
     remote_src: yes
     extra_opts: "--strip-components=1"  # Use this option to remove the parent directory (prometheus-2.46.0.linux-amd64) during extraction
@@ -28,36 +28,36 @@
       enabled: yes
       daemon_reload: yes
 
-## Installing Node_Exporter
-- name: Creating app Directory
-  ansible.builtin.file:
-    path: /opt/node_exporter
-    state: directory
-
-
-- name: Downloading Node_exporter
-  ansible.builtin.get_url:
-    url: https://github.com/prometheus/node_exporter/releases/download/v1.6.1/node_exporter-1.6.1.linux-amd64.tar.gz
-    dest: /tmp/node_exporter-1.6.1.linux-amd64.tar.gz
-
-- name: Unarchive Node_exporter
-  ansible.builtin.unarchive:
-    src: /tmp/node_exporter-1.6.1.linux-amd64.tar.gz
-    dest: /opt/node_exporter  # Destination directory path
-    remote_src: yes
-    extra_opts: "--strip-components=1"
-
-- name: Copy SystemD file
-  ansible.builtin.template:
-    src: "node_exporter.service"
-    dest: /etc/systemd/system/node_exporter.service
-
-- name: Enable node_exporter service on boot
-  ansible.builtin.systemd:
-    name: node_exporter
-    state: started
-    enabled: yes
-    daemon_reload: yes
+### Installing Node_Exporter
+#- name: Creating app Directory
+#  ansible.builtin.file:
+#    path: /opt/node_exporter
+#    state: directory
+#
+#
+#- name: Downloading Node_exporter
+#  ansible.builtin.get_url:
+#    url: https://github.com/prometheus/node_exporter/releases/download/v1.6.1/node_exporter-1.6.1.linux-amd64.tar.gz
+#    dest: /tmp/*
+#
+#- name: Unarchive Node_exporter
+#  ansible.builtin.unarchive:
+#    src: /tmp/*
+#    dest: /opt/node_exporter  # Destination directory path
+#    remote_src: yes
+#    extra_opts: "--strip-components=1"
+#
+#- name: Copy SystemD file
+#  ansible.builtin.template:
+#    src: "node_exporter.service"
+#    dest: /etc/systemd/system/node_exporter.service
+#
+#- name: Enable node_exporter service on boot
+#  ansible.builtin.systemd:
+#    name: node_exporter
+#    state: started
+#    enabled: yes
+#    daemon_reload: yes
 
 ## Installing alert manager
 
@@ -67,7 +67,7 @@
     state: directory
 
 
-- name: Downloading Node_exporter
+- name: Downloading alert manager
   ansible.builtin.get_url:
     url: https://github.com/prometheus/alertmanager/releases/download/v0.25.0/alertmanager-0.25.0.linux-amd64.tar.gz
     dest: /tmp/*
@@ -98,6 +98,6 @@
 
 
 
-#- name: Setup Exporter
-#  ansible.builtin.include_tasks: "exporter.yml"
-#  when: prometheus == "exporter"
+- name: Setup Exporter
+  ansible.builtin.include_tasks: "exporter.yml"
+  when: prometheus == "exporter"

@@ -1,2 +1,4 @@
 component: frontend
 app_version: 1.0.0
+service_name: nginx
+monitor_ssh_service: true

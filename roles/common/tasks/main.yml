@@ -4,16 +4,60 @@
 #- name: Install Prometheus Node Exporter
 #  ansible.builtin.shell: labauto prometheus-node-exporter
 #
-#- name: Make Template
-#  ansible.builtin.template:
-#    src: grafana-template.json
-#    dest: /tmp/grafana.json
-#    remote_src: yes
-#
-#- name: Import Grafana dashboard
-#  community.grafana.grafana_dashboard:
-#    grafana_url: http://172.31.9.50:3000
-#    grafana_api_key: "{{ lookup('aws_ssm', 'grafana.api_key', region='us-east-1' ) }}"
-#    state: present
-#    overwrite: yes
-#    path: /tmp/grafana.json
+## Installing Node_Exporter
+- name: Creating app Directory
+  ansible.builtin.file:
+    path: /opt/node_exporter
+    state: directory
+
+
+- name: Downloading Node_exporter
+  ansible.builtin.get_url:
+    url: https://github.com/prometheus/node_exporter/releases/download/v1.6.1/node_exporter-1.6.1.linux-amd64.tar.gz
+    dest: /tmp/*
+
+- name: Unarchive Node_exporter
+  ansible.builtin.unarchive:
+    src: /tmp/*
+    dest: /opt/node_exporter  # Destination directory path
+    remote_src: yes
+    extra_opts: "--strip-components=1"
+
+- name: Copy SystemD file
+  ansible.builtin.template:
+    src: "node_exporter.service"
+    dest: /etc/systemd/system/node_exporter.service
+
+- name: Enable node_exporter service on boot
+  ansible.builtin.systemd:
+    name: node_exporter
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+## Setting Alerts
+- name: Setup Prometheus Alert Configuration
+  ansible.builtin.template:
+    src: alert.yml
+    dest: /tmp/alert.yml
+
+- name: Copy Prometheus Alerts Configuration to Prometheus Server
+  ansible.builtin.shell: sshpass -p {{ lookup('aws_ssm', '{{env}}.ssh.pass', region='us-east-1' ) }} scp /tmp/alert.yml {{ lookup('aws_ssm', '{{env}}.ssh.pass', region='us-east-1' ) }}@172.31.9.50:/opt/prometheus/alerts/{{component}}.yml
+
+- name: Reload Prometheus
+  ansible.builtin.shell: curl -v -s -XPOST http://172.31.9.50:9090/-/reload
+
+# Importing Grafana Dashboards
+- name: Make Template
+  ansible.builtin.template:
+    src: grafana-template.json
+    dest: /tmp/grafana.json
+    remote_src: yes
+
+- name: Import Grafana dashboard
+  community.grafana.grafana_dashboard:
+    grafana_url: http://172.31.9.50:3000
+    grafana_api_key: "{{ lookup('aws_ssm', 'grafana.api_key', region='us-east-1' ) }}"
+    state: present
+    overwrite: yes
+    path: /tmp/grafana.json

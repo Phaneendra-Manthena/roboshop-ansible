@@ -1,0 +1,23 @@
+groups:
+  - name: {{ component }}
+    rules:
+      - alert: ServiceDown
+        expr: node_systemd_unit_state{name="{{env}}-{{component}}",exported_name="{{service_name}}.service",state="active"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations: {% raw %}
+          summary: "Service Down on {{ $labels.name }}"
+          description: "Service {{ $labels.exported_name }} is down"
+  {% endraw %}
+  {% if monitor_ssh_service %}
+- alert: SSHServiceDown
+  expr: node_systemd_unit_state{name="{{env}}-{{component}}",exported_name="sshd.service",state="active"} == 0
+  for: 1m
+  labels:
+    severity: critical
+  annotations: {% raw %}
+    summary: "Service Down on {{ $labels.name }}"
+    description: "Service {{ $labels.exported_name }} is down"
+  {% endraw %}
+  {% endif %}
